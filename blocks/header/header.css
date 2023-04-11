@@ -1,0 +1,39 @@
+.header {
+  margin: 0;
+  display: flex;
+  padding: 28px 0px 31px 27px;
+  border-bottom: 1px solid #545454;
+}
+
+@media (min-width: 321px)and (max-width: 425px) {
+  .header {
+    padding: 28px 0 32px;
+    margin: 0 24px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .header {
+    padding: 28px 0 32px;
+    margin: 0 48px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .header {
+    padding: 45px 0 41px;
+    margin: 0 100px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    margin: 0 150px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    margin: 0 200px;
+  }
+}

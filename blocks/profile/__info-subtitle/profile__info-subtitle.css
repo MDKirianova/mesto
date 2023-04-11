@@ -1,0 +1,10 @@
+.profile__info-subtitle {
+  color: #fff;
+  margin: 14px 0 0;
+  padding: 0;
+}
+@media screen and (min-width: 1024px){
+  .profile__info-subtitle{
+    margin: 16px 0 0;
+  }
+}

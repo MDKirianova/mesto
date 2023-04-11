@@ -1,0 +1,11 @@
+.grid-elements {
+  margin: 0;
+  padding: 0 0 48px;
+  border: 0;
+}
+
+@media screen and (min-width: 1025px) {
+  .grid-elements {
+    padding: 0 0 67px;
+  }
+}
