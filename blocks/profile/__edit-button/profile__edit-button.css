@@ -3,5 +3,15 @@
   padding: 0;
   border: 0;
   all: unset;
+  background-image: url(../../../images/edit_button.svg);
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+}
 
+@media  screen and (min-width: 769px) {
+.profile__edit-button {
+  width: 24px;
+  height: 24px;
+}
 }

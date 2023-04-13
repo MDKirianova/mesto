@@ -14,16 +14,17 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img src="./images/Avatar.png" alt="Аватарка автора" class="profile__avatar">
-      <div class="profile__info">
-        <div class="profile__title-button">
-          <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button"><img class="profile__icon-edit-button" src="./images/edit_button.svg"
-              alt="кнопка редактирования"></button>
+      <div class="autor">
+        <img src="./images/Avatar.png" alt="Аватарка автора" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__title-button">
+            <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button centering" type="button"></button>
+          </div>
+          <p class="profile__info-subtitle">Исследователь океана</p>
         </div>
-        <p class="profile__info-subtitle">Исследователь океана</p>
       </div>
-      <button class="profile__add-button"><img src="./images/add_button.svg" alt="кнопка добавления">
+      <button class="profile__add-button" type="button"><img src="./images/add_button.svg" alt="кнопка добавления">
       </button>
     </section>
     <section class="grid-elements">
@@ -83,6 +84,18 @@
   <footer class="footer">
     <p class="footer__copyright">© 2023 Mesto Russia</p>
   </footer>
+  <div class="popup">
+    <div class="popup__content centering">
+      <button class="popup__close-btn"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <div class="popup__form-element">
+        <input type="text" class="popup__name-input" value="lalla">
+        <input type="text" class="popup__job-input">
+        <button type="button" class="popup__save-btn centering"></button>
+      </div>
+    </div>
+  </div>
+  <script src="./pages/index.js"></script>
 </body>
 
 </html>
