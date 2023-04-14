@@ -1,14 +1,14 @@
 .popup__close-btn {
  all:unset;
  position: absolute;
- top: 87px;
- right: 19px;
+ top: -48px;
+ right: 0px;
  bottom: 0;
  width: 20px;
  height: 20px;
  background-size: 100% 100%;
  background-image: url(../../../images/close_icon.svg);
- transition: opacity ease-in-out 0.4s;
+ transition: opacity ease-in-out 0.2s;
  cursor: pointer;
 }
 
@@ -19,3 +19,13 @@
 .popup__close-btn:active {
   opacity: 1;
 }
+
+@media screen and (min-width: 769px) {
+  .popup__close-btn {
+    top: -41px;
+    right: -22px;
+    width: 32px;
+    height: 32px;
+  }
+}
+

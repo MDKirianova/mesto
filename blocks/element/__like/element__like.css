@@ -3,4 +3,19 @@
   padding: 0;
   border: 0;
   all: unset;
+  background-size: contain;
+  background-image: url(../../../images/like_icon.svg);
+  transition: opacity ease-in-out 0.2s;
+  cursor: pointer;
+  width: 22px;
+  height: 19px;
+  align-self: center;
+}
+
+.element__like:active {
+  opacity: 1;
+}
+
+.element__like:hover {
+  opacity: 0.5;
 }
