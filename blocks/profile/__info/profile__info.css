@@ -6,12 +6,8 @@
 }
 
 @media  screen and (min-width: 769px) {
-
 .profile__info {
-  display: flex;
-  flex-direction: column;
   margin: 0;
   align-items: start;
-
 }
 }

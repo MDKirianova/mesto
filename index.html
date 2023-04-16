@@ -14,17 +14,17 @@
   </header>
   <main class="content">
     <section class="profile">
-      <div class="autor">
+      <div class="profile__autor">
         <img src="./images/Avatar.png" alt="Аватарка автора" class="profile__avatar">
         <div class="profile__info">
           <div class="profile__title-button">
             <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button" type="button"></button>
+            <button type="button" aria-label="Кнопка редатирования профиля" class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__info-subtitle">Исследователь океана</p>
         </div>
       </div>
-      <button class="profile__add-button" type="button"></button>
+      <button type="button" aria-label="" class="profile__add-button" type="button"></button>
     </section>
     <section class="grid-elements">
       <ul class="grid-elements__list">
@@ -32,42 +32,42 @@
           <img src="./images/larnaka_image.png" alt="Фото собора св. Лазаря в Ларнаке" class="element__image">
           <div class="element__title-like">
             <h2 class="element__title">Ларнака</h2>
-            <button class="element__like"></button>
+            <button type="button" aria-label="Кнопка для лайка карточки Ларнака" class="element__like"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/limassol_image.png" alt="Фото дома в старом городе в Лимассоле" class="element__image">
           <div class="element__title-like">
             <h2 class="element__title">Лимассол</h2>
-            <button class="element__like"></button>
+            <button type="button" aria-label="Кнопка для лайка карточки Лимассол" class="element__like"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/nikosia_image.png" alt="Фото окна в старом городе в Никосии" class="element__image">
           <div class="element__title-like">
             <h2 class="element__title">Никосия</h2>
-            <button class="element__like "></button>
+            <button type="button" aria-label="Кнопка для лайка карточки Никосия" class="element__like "></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/kurion_image.png" alt="Фото восстановленного амфитеатра в Курионе" class="element__image">
           <div class="element__title-like">
             <h2 class="element__title">Курион</h2>
-            <button class="element__like"></button>
+            <button type="button" aria-label="Кнопка для лайка карточки Курион" class="element__like"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/paphos_image.png" alt="Фото маяка в Пафосе" class="element__image">
           <div class="element__title-like">
             <h2 class="element__title">Пафос</h2>
-            <button class="element__like"></button>
+            <button type="button" aria-label="Кнопка для лайка карточки Пафос" class="element__like"></button>
           </div>
         </li>
         <li class="element">
           <img src="./images/ortodox_church_image.png" alt="Фото церкви в горах" class="element__image">
           <div class="element__title-like">
-            <h2 class="element__title block">Церковь в горах</h2>
-            <button class="element__like"></button>
+            <h2 class="element__title">Церковь в горах</h2>
+            <button type="submit" aria-label="Кнопка для лайка карточки Церковь" class="element__like"></button>
           </div>
         </li>
       </ul>
@@ -75,20 +75,21 @@
   </main>
 
   <footer class="footer">
-    <p class="footer__copyright">© 2023 Mesto Russia</p>
+    <p lang="en" class="footer__copyright">© 2023 Mesto Russia</p>
   </footer>
   <div class="popup">
-    <div class="popup__content">
-      <button class="popup__close-btn"></button>
+    <div class="popup__container">
+      <button type="reset" aria-label="Кнопка для скрытия попапа" class="popup__close-btn" aria-label=""></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form-element">
-        <input type="text" class="popup__name-input" value="">
-        <input type="text" class="popup__job-input" value="">
-        <button type="submit" class="popup__save-btn" ></button>
+      <form name="Форма редатирования" class="popup__form-element">
+        <input name="fieldName" type="text" class="popup__input popup__input_type_name" value="" placeholder="Имя автора
+        ">
+        <input name="fieldJob" type="text" class="popup__input popup__input_type_job" value="" placeholder="Должность автора">
+        <button type="submit" class="popup__save-btn" >Сохранить</button>
       </form>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+  <script src="./scripts/index.js" defer></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 .content {
   margin: 0;
   padding: 0 19px;
+  max-width: 1280px;
 }
 
 @media (min-width: 321px) and (max-width: 425px) {

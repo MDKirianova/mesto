@@ -3,6 +3,7 @@
   padding: 0 19px;
   border: 0;
   color: #545454;
+  max-width: 1280px;
 }
 
 @media (min-width: 321px) and (max-width: 425px) {

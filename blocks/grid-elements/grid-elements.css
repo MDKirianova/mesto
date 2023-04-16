@@ -1,7 +1,8 @@
 .grid-elements {
-  margin: 0;
+  margin: 0 auto;
   padding: 0 0 48px;
-  border: 0;
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 1025px) {
