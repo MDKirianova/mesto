@@ -1,23 +1,22 @@
 .header__logo {
   margin: 0;
   padding: 0;
-  max-width: 36%;
-}
-
-@media (min-width: 321px) and (max-width: 425px) {
-  .header__logo {
-    max-width: 30%;
-  }
+  object-fit: cover;
+  max-width: 104px;
+  max-height: 24.4px;
+  display: block;
 }
 
 @media (min-width: 426px) and (max-width: 768px) {
   .header__logo {
-    max-width: 24%;
+    max-width: 123px;
+    max-height: 28px;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media screen and (min-width: 769px) {
   .header__logo {
-    max-width: 100%;
+    max-width: 143px;
+    max-height: 31px;
   }
 }

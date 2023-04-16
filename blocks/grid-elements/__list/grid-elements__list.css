@@ -2,12 +2,11 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border: 0;
   display: grid;
   row-gap: 20px;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 600px) and (max-width: 1024px) {
   .grid-elements__list {
     column-gap: 19px;
     grid-template-columns: repeat(2, 1fr);
