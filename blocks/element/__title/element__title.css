@@ -4,20 +4,8 @@
   font-size: 24px;
   line-height: 29px;
   font-weight: 900;
-  max-width: 180px;
+  max-width: 220px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-
-@media (min-width: 425px) and (max-width: 1024px) {
-  .element__title {
-    max-width: 212px;
-  }
-}
-
- @media (min-width: 1025px) and (max-width: 1150px) {
-  .element__title{
-    max-width: 180px;
-  }
- }

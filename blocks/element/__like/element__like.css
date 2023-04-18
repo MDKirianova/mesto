@@ -4,7 +4,7 @@
   border: none;
   background-size: cover;
   background-image: url(../../../images/like_icon.svg);
-  background-position: 100% 100%;
+  background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
   transition: opacity ease-in-out 0.2s;
