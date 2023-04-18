@@ -1,6 +1,6 @@
 .profile__avatar {
-  width: 48%;
-  height: 48%;
+  width: 120px;
+  height: 120px;
   margin: 0 0 28px;
   object-fit: cover;
   display: block;
@@ -9,8 +9,6 @@
 
 @media  screen and (min-width: 769px) {
  .profile__avatar {
-  width: 20%;
-  height: 20%;
   margin: 0;
  }
 }
