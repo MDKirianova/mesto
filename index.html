@@ -28,48 +28,6 @@
     </section>
     <section class="grid-elements">
       <ul class="grid-elements__list">
-        <li class="element">
-          <img src="./images/larnaka_image.png" alt="Фото собора св. Лазаря в Ларнаке" class="element__image">
-          <div class="element__title-like">
-            <h2 class="element__title">Ларнака</h2>
-            <button type="button" aria-label="Кнопка для лайка карточки Ларнака" class="element__like"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/limassol_image.png" alt="Фото дома в старом городе в Лимассоле" class="element__image">
-          <div class="element__title-like">
-            <h2 class="element__title">Лимассол</h2>
-            <button type="button" aria-label="Кнопка для лайка карточки Лимассол" class="element__like"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/nikosia_image.png" alt="Фото окна в старом городе в Никосии" class="element__image">
-          <div class="element__title-like">
-            <h2 class="element__title">Никосия</h2>
-            <button type="button" aria-label="Кнопка для лайка карточки Никосия" class="element__like "></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/kurion_image.png" alt="Фото восстановленного амфитеатра в Курионе" class="element__image">
-          <div class="element__title-like">
-            <h2 class="element__title">Курион</h2>
-            <button type="button" aria-label="Кнопка для лайка карточки Курион" class="element__like"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/paphos_image.png" alt="Фото маяка в Пафосе" class="element__image">
-          <div class="element__title-like">
-            <h2 class="element__title">Пафос</h2>
-            <button type="button" aria-label="Кнопка для лайка карточки Пафос" class="element__like"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/ortodox_church_image.png" alt="Фото церкви в горах" class="element__image">
-          <div class="element__title-like">
-            <h2 class="element__title">Церковь в горах</h2>
-            <button type="submit" aria-label="Кнопка для лайка карточки Церковь" class="element__like"></button>
-          </div>
-        </li>
       </ul>
     </section>
   </main>
@@ -88,7 +46,34 @@
       </form>
     </div>
   </div>
-  <script src="./scripts/index.js" defer></script>
+  <div class="popup popup_add">
+    <div class="popup__container">
+      <button type="reset" aria-label="Кнопка для скрытия попапа" class="popup__close-btn popup__close-btn_add"></button>
+      <h2 class="popup__title">Новое место</h2>
+      <form name="addForm" class="popup__form-element popup__form-element_add">
+        <input name="fieldTitle" type="text" class="popup__input popup__input_type_title" value="" placeholder="Название">
+        <input name="fieldLink" type="text" class="popup__input popup__input_type_link" value="" placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-btn" >Создать</button>
+      </form>
+    </div>
+  </div>
+  <div class="zoom-popup">
+    <div class="zoom-popup__container">
+      <button type="reset" aria-label="Кнопка для скрытия попапа" class="popup__close-btn popup__close-btn_zoom"></button>
+      <img src="" alt="" class="zoom-popup__image">
+      <p class="zoom-popup__text"></p></div>
+  </div>
+  <template id="card-template">
+    <li class="element">
+      <img src="" alt="" class="element__image">
+      <button type="button"  aria-label="" class="element__trash"></button>
+      <div class="element__title-like">
+        <h2 class="element__title"></h2>
+        <button type="button" aria-label="" class="element__like element__like_active"></button>
+      </div>
+    </li>
+  </template>
+  <script src="./scripts/index.js" type="module" defer></script>
 </body>
 
 </html>
