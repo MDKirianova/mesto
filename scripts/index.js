@@ -15,7 +15,7 @@ let openAddPopupBtn = document.querySelector('.profile__add-button');
 let addFormElement = document.querySelector('.popup__form-element_add');
 let titleInput = document.querySelector('.popup__input_type_title');
 let linkInput = document.querySelector('.popup__input_type_link');
-let popupAddCloseBtn = document.querySelector('.popup__close-btn_add')
+let popupAddCloseBtn = document.querySelector('.popup__close-btn_type_add')
 
 function popupOpen(item){
   nameInput.value = profileTitle.textContent;
@@ -36,7 +36,7 @@ const createCardElement = (name, link) => {
  const cardLikeButton = cardElement.querySelector('.element__like');
  const cardDeleteButton = cardElement.querySelector('.element__trash');
  const popupZoom = document.querySelector('.zoom-popup');
- const popupZoomCloseBtn = popupZoom.querySelector('.popup__close-btn_zoom');
+ const popupZoomCloseBtn = popupZoom.querySelector('.popup__close-btn_type_zoom');
  const popupZoomText = popupZoom.querySelector('.zoom-popup__text');
  const popupZoomImage = popupZoom.querySelector('.zoom-popup__image');
 
