@@ -4,7 +4,6 @@ const cardTemplate = document.querySelector('#card-template');
 const gridElementsContainer = document.querySelector('.grid-elements__list');
 let openPopupBtn = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let popupCloseBtn = document.querySelector('.popup__close-btn');
 let profileTitle = document.querySelector('.profile__info-title')
 let profileSubtitle = document.querySelector('.profile__info-subtitle')
 let formElement = document.querySelector('.popup__form-element');
@@ -15,7 +14,8 @@ let openAddPopupBtn = document.querySelector('.profile__add-button');
 let addFormElement = document.querySelector('.popup__form-element_add');
 let titleInput = document.querySelector('.popup__input_type_title');
 let linkInput = document.querySelector('.popup__input_type_link');
-let popupAddCloseBtn = document.querySelector('.popup__close-btn_type_add')
+const popupZoom = document.querySelector('.zoom-popup');
+
 
 function popupOpen(item){
   nameInput.value = profileTitle.textContent;
@@ -35,8 +35,6 @@ const createCardElement = (name, link) => {
  const elementTitle = cardElement.querySelector('.element__title');
  const cardLikeButton = cardElement.querySelector('.element__like');
  const cardDeleteButton = cardElement.querySelector('.element__trash');
- const popupZoom = document.querySelector('.zoom-popup');
- const popupZoomCloseBtn = popupZoom.querySelector('.popup__close-btn_type_zoom');
  const popupZoomText = popupZoom.querySelector('.zoom-popup__text');
  const popupZoomImage = popupZoom.querySelector('.zoom-popup__image');
 
@@ -55,13 +53,11 @@ const createCardElement = (name, link) => {
     popupOpen(popupZoom);
     popupZoomImage.src = link;
     popupZoomText.textContent = name;
-
   }
 
  cardLikeButton.addEventListener('click', handleLike);
  cardDeleteButton.addEventListener('click', handleDelete);
  elementImage.addEventListener('click', handleZoom);
- popupZoomCloseBtn.addEventListener('click',() =>  popupClose(popupZoom));
 
 return cardElement;
 };
@@ -85,10 +81,13 @@ function handleFormSubmit (evt) {
     popupClose (popup);
 };
 
+openAddPopupBtn.addEventListener('click', () => popupOpen(popupAdd));
+openPopupBtn.addEventListener('click',() =>  popupOpen(popup));
+formElement.addEventListener('submit', handleFormSubmit);
+addFormElement.addEventListener('submit', handleAddFormSubmit);
 
-  openAddPopupBtn.addEventListener('click', () => popupOpen(popupAdd));
-  openPopupBtn.addEventListener('click',() =>  popupOpen(popup));
-  popupCloseBtn.addEventListener('click',() =>  popupClose(popup));
-  popupAddCloseBtn.addEventListener('click', () => popupClose(popupAdd));
-  formElement.addEventListener('submit', handleFormSubmit);
-  addFormElement.addEventListener('submit', handleAddFormSubmit);
+const allCloseBtns = document.querySelectorAll('.popup__close-btn');
+allCloseBtns.forEach((button) => {
+  const popupToClose = button.closest('.popup');
+  button.addEventListener('click', () =>  popupClose(popupToClose));
+});
