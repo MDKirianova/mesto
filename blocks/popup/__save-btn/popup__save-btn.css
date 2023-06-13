@@ -20,7 +20,14 @@
 .popup__save-btn:hover {
 opacity: 0.8;
 }
- 
+.popup__save-btn:disabled {
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  color: #000000;
+  opacity: 0.2;
+  cursor: not-allowed;
+}
 @media screen and (min-width: 769px) {
   .popup__save-btn {
     width: 358px;
