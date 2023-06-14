@@ -54,6 +54,7 @@ function showInputError(input, config, errorElement) {
 function toggleButton(form, config) {
   const buttonSubmit = form.querySelector(config.submitButtonSelector);
   const isFormValid = form.checkValidity();
+  console.log(isFormValid);
   buttonSubmit.disabled = !isFormValid;
   buttonSubmit.classList.toggle(config.inactiveButtonClass, !isFormValid);
 }

@@ -18,6 +18,10 @@ const popupZoom = document.querySelector('.popup-zoom');
 const popupZoomText = popupZoom.querySelector('.popup-zoom__text');
 const popupZoomImage = popupZoom.querySelector('.popup-zoom__image');
 
+nameInput.value = profileTitle.textContent;
+jobInput.value = profileSubtitle.textContent;
+
+
 
 function popupOpen(item){
   item.classList.add('popup_opened');
@@ -85,6 +89,7 @@ buttonOpenPopupAdd.addEventListener('click', () => {
   popupOpen(popupAdd);
 
 });
+
 buttonOpenPopupProfile.addEventListener('click',() => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
