@@ -17,6 +17,8 @@ const linkInput = document.querySelector('.popup__input_type_link');
 const popupZoom = document.querySelector('.popup-zoom');
 const popupZoomText = popupZoom.querySelector('.popup-zoom__text');
 const popupZoomImage = popupZoom.querySelector('.popup-zoom__image');
+const popupList = document.querySelectorAll('.popup')
+
 
 nameInput.value = profileTitle.textContent;
 jobInput.value = profileSubtitle.textContent;
@@ -80,7 +82,7 @@ function handleProfileFormSubmit (evt) {
     evt.preventDefault(); 
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
-    popupClose (popup);
+    popupClose(popup);
 };
 
 buttonOpenPopupAdd.addEventListener('click', () => {
@@ -103,3 +105,26 @@ allCloseBtns.forEach((button) => {
   const popupToClose = button.closest('.popup');
   button.addEventListener('click', () =>  popupClose(popupToClose));
 });
+
+function popupCloseClickOnOverlay (evt) {
+  popupList.forEach((popup) =>{
+    popup.addEventListener('click', function(evt){
+      if (evt.target.classList.contains('popup_opened')){
+        popupClose(popup)
+      }
+    })
+  })
+}
+
+function popupCloseClickToEsc (evt) {
+  popupList.forEach((popup) =>{
+    document.addEventListener('keydown', function(evt){
+      if (evt.key === 'Escape'){
+        popupClose(popup)
+      }
+    })
+  })
+}
+
+popupCloseClickOnOverlay();
+popupCloseClickToEsc();
