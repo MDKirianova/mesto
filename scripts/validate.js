@@ -1,38 +1,34 @@
 const formValidationConfig = {
-   formSelector: '.popup__form-element',
-   inputSelector: '.popup__input',
-   submitButtonSelector: '.popup__save-btn',
-   inactiveButtonClass: 'popup__save-btn_disabled',
-   inputErrorClass: 'popup__input_type_error',
-   errorClass: 'popup__error_visible'
+  formSelector: '.popup__form-element',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-btn',
+  inactiveButtonClass: 'popup__save-btn_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
-  };
-
-function disableSubmit(evt) {
-    evt.preventDefault();
-}
 
 function enableValidation(config) {
-   const formList = Array.from(document.querySelectorAll(config.formSelector));
-   formList.forEach((form) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((form) => {
     enableFormValidation(form, config);
-   });
+  });
 }
 
 function enableFormValidation(form, config) {
-  form.addEventListener('submit', disableSubmit);
+  const buttonSubmit = form.querySelector(config.submitButtonSelector);
   form.addEventListener('input', () => {
-    toggleButton(form, config);
+    toggleButton(buttonSubmit, form, config);
   });
   addInputListeners(form, config);
-  toggleButton(form, config);
+  toggleButton(buttonSubmit, form, config);
 }
 
-function handleFormInput(event, config) {
+function handleFormInput(form, event, config) {
   const input = event.target;
   const inputId = input.id;
-  const errorElement = document.querySelector(`#${inputId}-error`);
-  if (input.validity.valid){
+  const errorElement = form.querySelector(`#${inputId}-error`);
+  if (input.validity.valid) {
     hideInputError(input, config, errorElement);
   } else {
     showInputError(input, config, errorElement);
@@ -51,8 +47,7 @@ function showInputError(input, config, errorElement) {
   errorElement.classList.add(config.errorClass);
 }
 
-function toggleButton(form, config) {
-  const buttonSubmit = form.querySelector(config.submitButtonSelector);
+function toggleButton(buttonSubmit, form, config) {
   const isFormValid = form.checkValidity();
   buttonSubmit.disabled = !isFormValid;
   buttonSubmit.classList.toggle(config.inactiveButtonClass, !isFormValid);
@@ -61,8 +56,8 @@ function toggleButton(form, config) {
 function addInputListeners(form, config) {
   const inputList = Array.from(form.querySelectorAll(config.inputSelector))
   inputList.forEach(function (item) {
-    item.addEventListener('input', (event) =>{
-      handleFormInput(event, config);
+    item.addEventListener('input', (event) => {
+      handleFormInput(form, event, config);
     })
   })
 }
