@@ -6,7 +6,6 @@ const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
 const popupProfile = document.querySelector('.popup-profile');
 const profileTitle = document.querySelector('.profile__info-title');
 const profileSubtitle = document.querySelector('.profile__info-subtitle');
-const form = document.querySelector('.popup__form-element');
 const formElementPopupProfile = document.querySelector('.popup__form-element_profile');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
@@ -20,10 +19,13 @@ const popupZoomText = popupZoom.querySelector('.popup-zoom__text');
 const popupZoomImage = popupZoom.querySelector('.popup-zoom__image');
 const allCloseBtns = document.querySelectorAll('.popup__close-btn');
 const popupList = document.querySelectorAll('.popup');
-const buttonForSubmit = formElementPopupAdd.querySelector('.popup__save-btn');
-const buttonForChange = formElementPopupProfile.querySelector('.popup__save-btn');
-const errorElement = document.querySelector('.popup__error');
-const input = document.querySelector('.popup__input');
+const cardFormSubmitButton = formElementPopupAdd.querySelector('.popup__save-btn');
+const profileFormSubmitButton = formElementPopupProfile.querySelector('.popup__save-btn');
+const config = {
+  inputSelector: '.popup__input',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
 
 nameInput.value = profileTitle.textContent;
 jobInput.value = profileSubtitle.textContent;
@@ -76,19 +78,31 @@ initialCards.forEach((card) => {
   cardsContainer.prepend(element);
 });
 
+function hideValidationErrors(form, config) {
+  const inputs = form.querySelectorAll(config.inputSelector);
+  inputs.forEach((input) => {
+    const errorElement = form.querySelector(`#${input.id}-error`);
+    if (errorElement) {
+      input.classList.remove(config.inputErrorClass);
+      errorElement.textContent = '';
+      errorElement.classList.remove(config.errorClass);
+    }
+  })
+}
+
 function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  buttonForChange.disabled = false;
-  errorElement.textContent = '';
-  input.classList.remove('popup__input_type_error');
+  profileFormSubmitButton.disabled = false;
+  hideValidationErrors(formElementPopupProfile, config);
   openPopup(popupProfile);
 }
 
 function openPopupAdd() {
   formElementPopupAdd.reset();
-  buttonForSubmit.disabled = true;
+  cardFormSubmitButton.disabled = true;
   openPopup(popupAdd);
+  hideValidationErrors(formElementPopupAdd, config);
 }
 
 function handleAddFormSubmit(evt) {
@@ -128,12 +142,7 @@ function handleClosePopupByEsc(evt) {
   }
 }
 
-function disableSubmit(evt) {
-  evt.preventDefault();
-}
-
 buttonOpenPopupAdd.addEventListener('click', openPopupAdd);
 buttonOpenPopupProfile.addEventListener('click', openPopupProfile);
 formElementPopupProfile.addEventListener('submit', handleProfileFormSubmit);
 formElementPopupAdd.addEventListener('submit', handleAddFormSubmit);
-form.addEventListener('submit', disableSubmit);
