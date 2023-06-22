@@ -1,4 +1,5 @@
-import { initialCards } from './array.js'
+import { initialCards } from './array.js';
+import { formValidationConfig } from './validate.js';
 
 const cardTemplate = document.querySelector('#card-template');
 const cardsContainer = document.querySelector('.grid-elements__list');
@@ -21,11 +22,7 @@ const allCloseBtns = document.querySelectorAll('.popup__close-btn');
 const popupList = document.querySelectorAll('.popup');
 const cardFormSubmitButton = formElementPopupAdd.querySelector('.popup__save-btn');
 const profileFormSubmitButton = formElementPopupProfile.querySelector('.popup__save-btn');
-const config = {
-  inputSelector: '.popup__input',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
+
 
 nameInput.value = profileTitle.textContent;
 jobInput.value = profileSubtitle.textContent;
@@ -94,7 +91,7 @@ function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
   profileFormSubmitButton.disabled = false;
-  hideValidationErrors(formElementPopupProfile, config);
+  hideValidationErrors(formElementPopupProfile, formValidationConfig);
   openPopup(popupProfile);
 }
 
@@ -102,7 +99,7 @@ function openPopupAdd() {
   formElementPopupAdd.reset();
   cardFormSubmitButton.disabled = true;
   openPopup(popupAdd);
-  hideValidationErrors(formElementPopupAdd, config);
+  hideValidationErrors(formElementPopupAdd, formValidationConfig);
 }
 
 function handleAddFormSubmit(evt) {
