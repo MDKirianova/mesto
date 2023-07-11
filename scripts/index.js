@@ -84,7 +84,6 @@ function handleAddFormSubmit(evt) {
 }
 
 function handleProfileFormSubmit(evt) {
-  console.log('hello');
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
