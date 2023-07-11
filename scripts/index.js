@@ -48,14 +48,14 @@ initialCards.forEach((item) => {
   cardsContainer.prepend(element);
 });
 
-function hideValidationErrors(form, config) {
-  const inputs = form.querySelectorAll(config.inputSelector);
+function hideValidationErrors(form, validators) {
+  const inputs = form.querySelectorAll(validators.inputSelector);
   inputs.forEach((input) => {
     const errorElement = form.querySelector(`#${input.id}-error`);
     if (errorElement) {
-      input.classList.remove(config.inputErrorClass);
+      input.classList.remove(validators.inputErrorClass);
       errorElement.textContent = '';
-      errorElement.classList.remove(config.errorClass);
+      errorElement.classList.remove(validators.errorClass);
     }
   })
 }
@@ -77,12 +77,14 @@ function openPopupAdd() {
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-  const element = createCardElement(titleInput.value, linkInput.value);
+  const card = new Card({ name: titleInput.value, link: linkInput.value }, '#card-template');
+  const element = card.createCardElement();
   cardsContainer.prepend(element);
   closePopup(popupAdd);
 }
 
 function handleProfileFormSubmit(evt) {
+  console.log('hello');
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
