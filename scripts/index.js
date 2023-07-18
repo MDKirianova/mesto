@@ -17,8 +17,10 @@ const titleInput = document.querySelector('.popup__input_type_title');
 const linkInput = document.querySelector('.popup__input_type_link');
 const allCloseBtns = document.querySelectorAll('.popup__close-btn');
 const popupList = document.querySelectorAll('.popup');
-const cardFormSubmitButton = formElementPopupAdd.querySelector('.popup__save-btn');
-const profileFormSubmitButton = formElementPopupProfile.querySelector('.popup__save-btn');
+const popupZoom = document.querySelector('.popup-zoom');
+const popupZoomText = popupZoom.querySelector('.popup-zoom__text');
+const popupZoomImage = popupZoom.querySelector('.popup-zoom__image');
+
 const validators = {
   formSelector: '.popup__form-element',
   inputSelector: '.popup__input',
@@ -43,43 +45,38 @@ function closePopup(item) {
 
 
 initialCards.forEach((item) => {
-  const card = new Card (item, '#card-template');
-  const element = card.createCardElement();
-  cardsContainer.prepend(element);
+  createCard(item);
 });
 
-function hideValidationErrors(form, validators) {
-  const inputs = form.querySelectorAll(validators.inputSelector);
-  inputs.forEach((input) => {
-    const errorElement = form.querySelector(`#${input.id}-error`);
-    if (errorElement) {
-      input.classList.remove(validators.inputErrorClass);
-      errorElement.textContent = '';
-      errorElement.classList.remove(validators.errorClass);
-    }
-  })
+function createCard(item) {
+  const card = new Card (item, '#card-template', handleCardClick);
+  const cardElement = card.createCardElement();
+  cardsContainer.prepend(cardElement);
+  return cardElement;
 }
 
 function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  profileFormSubmitButton.disabled = false;
-  hideValidationErrors(formElementPopupProfile, validators);
+  new FormValidator(validators, formElementPopupProfile).resetValidation();
   openPopup(popupProfile);
 }
 
 function openPopupAdd() {
   formElementPopupAdd.reset();
-  cardFormSubmitButton.disabled = true;
+  new FormValidator(validators, formElementPopupAdd).resetValidation();
   openPopup(popupAdd);
-  hideValidationErrors(formElementPopupAdd, validators);
+}
+
+function handleCardClick(name, link) {
+  popupZoomText.textContent = name;
+  popupZoomImage.src = link;
+  openPopup(popupZoom);
 }
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-  const card = new Card({ name: titleInput.value, link: linkInput.value }, '#card-template');
-  const element = card.createCardElement();
-  cardsContainer.prepend(element);
+  createCard({ name: titleInput.value, link: linkInput.value })
   closePopup(popupAdd);
 }
 
@@ -121,6 +118,3 @@ buttonOpenPopupAdd.addEventListener('click', openPopupAdd);
 buttonOpenPopupProfile.addEventListener('click', openPopupProfile);
 formElementPopupProfile.addEventListener('submit', handleProfileFormSubmit);
 formElementPopupAdd.addEventListener('submit', handleAddFormSubmit);
-
-
-export { openPopup }

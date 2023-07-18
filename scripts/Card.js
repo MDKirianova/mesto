@@ -1,10 +1,10 @@
-import {openPopup} from './index.js'
-
 export class Card {
-  constructor(data, templateSelector){
+  constructor(data, templateSelector, handleCardClick){
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
+
   }
 
   _getTemplate() {
@@ -20,32 +20,29 @@ export class Card {
 
   createCardElement() {
     this._element = this._getTemplate();
+    this._cardTitle = this._element.querySelector('.element__title');
+    this._cardImage = this._element.querySelector('.element__image');
     this._setEventListeners();
-    this._element.querySelector('.element__title').textContent = this._name;
-    this._element.querySelector('.element__title').alt = this._name;
-    this._element.querySelector('.element__image').src = this._link;
+    this._cardTitle.textContent = this._name;
+    this._cardImage.alt = this._name;
+    this._cardImage.src = this._link;
     return this._element;
   }
 
   _setEventListeners(){
-    this._element.querySelector('.element__like').addEventListener('click', () => {this._handleLike()});
-    this._element.querySelector('.element__trash').addEventListener('click', () => {this._handleDelete()});
-    this._element.querySelector('.element__image').addEventListener('click',() =>  {this._handleZoom()});
+    this._likeButton = this._element.querySelector('.element__like');
+    this._trashButton = this._element.querySelector('.element__trash');
+    this._likeButton.addEventListener('click', () => {this._handleLike()});
+    this._trashButton.addEventListener('click', () => {this._handleDelete()});
+    this._cardImage.addEventListener('click',() =>  {this._handleCardClick(this._name, this._link)});
   }
 
   _handleLike() {
-   this._element.querySelector('.element__like').classList.toggle('element__like_active');
+    this._likeButton.classList.toggle('element__like_active');
     }
 
   _handleDelete() {
     this._element.remove();
   }
 
-  _handleZoom() {
-    const popupZoom = document.querySelector('.popup-zoom');
-    openPopup(popupZoom);
-    popupZoom.querySelector('.popup-zoom__image').src = this._link;
-    popupZoom.querySelector('.popup-zoom__image').alt = this._name;
-    popupZoom.querySelector('.popup-zoom__text').textContent = this._name;
-  };
 }
