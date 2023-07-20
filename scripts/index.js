@@ -30,6 +30,9 @@ const validators = {
   errorClass: 'popup__error_visible'
 };
 
+const FormValidatorPopupProfile =  new FormValidator(validators, formElementPopupProfile);
+const FormValidatorPopupAdd = new FormValidator(validators, formElementPopupAdd);
+
 nameInput.value = profileTitle.textContent;
 jobInput.value = profileSubtitle.textContent;
 
@@ -43,40 +46,41 @@ function closePopup(item) {
   document.removeEventListener('keydown', handleClosePopupByEsc);
 }
 
+function createCard(item) {
+  const card = new Card (item, '#card-template', handleCardClick);
+  return card.createCardElement();
+}
 
 initialCards.forEach((item) => {
   createCard(item);
+  cardsContainer.prepend(createCard(item));
 });
 
-function createCard(item) {
-  const card = new Card (item, '#card-template', handleCardClick);
-  const cardElement = card.createCardElement();
-  cardsContainer.prepend(cardElement);
-  return cardElement;
-}
 
 function openPopupProfile() {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
-  new FormValidator(validators, formElementPopupProfile).resetValidation();
+  FormValidatorPopupProfile.resetValidation();
   openPopup(popupProfile);
 }
 
 function openPopupAdd() {
   formElementPopupAdd.reset();
-  new FormValidator(validators, formElementPopupAdd).resetValidation();
+  FormValidatorPopupAdd.resetValidation();
   openPopup(popupAdd);
 }
 
 function handleCardClick(name, link) {
   popupZoomText.textContent = name;
   popupZoomImage.src = link;
+  popupZoomImage.alt = name;
   openPopup(popupZoom);
 }
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-  createCard({ name: titleInput.value, link: linkInput.value })
+  createCard({ name: titleInput.value, link: linkInput.value });
+  cardsContainer.prepend(createCard({ name: titleInput.value, link: linkInput.value }));
   closePopup(popupAdd);
 }
 
@@ -110,9 +114,9 @@ function handleClosePopupByEsc(evt) {
   }
 }
 
-new FormValidator(validators, formElementPopupProfile).enableValidation();
-new FormValidator(validators, formElementPopupAdd).enableValidation();
 
+FormValidatorPopupProfile.enableValidation();
+FormValidatorPopupAdd.enableValidation();
 
 buttonOpenPopupAdd.addEventListener('click', openPopupAdd);
 buttonOpenPopupProfile.addEventListener('click', openPopupProfile);
