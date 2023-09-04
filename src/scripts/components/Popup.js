@@ -1,4 +1,3 @@
-import FormValidator from "./FormValidator.js";
 export class Popup {
   constructor(popupSelector){
     this._popup = document.querySelector(popupSelector);

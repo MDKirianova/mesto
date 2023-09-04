@@ -55,32 +55,32 @@ const popupWithFormAdd = new PopupWithForm({ popupSelector: popupAdd,
 });
 popupWithFormAdd.setEventListeners();
 
-const FormValidatorPopupAdd = new FormValidator(validators, formElementPopupAdd);
-FormValidatorPopupAdd.enableValidation();
+const validatorAddCard = new FormValidator(validators, formElementPopupAdd);
+validatorAddCard.enableValidation();
 
 buttonOpenPopupAdd.addEventListener('click', () => {
   popupWithFormAdd.open();
-  FormValidatorPopupAdd.resetValidation();
+  validatorAddCard.resetValidation();
 });
 
-const changePopupProfile = new UserInfo(profileTitle, profileSubtitle);
+const userInfo = new UserInfo(profileTitle, profileSubtitle);
 
 const popupWithFormProfile = new PopupWithForm({popupSelector: popupProfile,
 handleFormSubmit: (data) => {
-  changePopupProfile.setUserInfo(data.fieldName, data.fieldJob);
+  userInfo.setUserInfo(data.fieldName, data.fieldJob);
   popupWithFormProfile.close();
 }
 });
 
 popupWithFormProfile.setEventListeners();
 
-const FormValidatorPopupProfile =  new FormValidator(validators, formElementPopupProfile);
-FormValidatorPopupProfile.enableValidation();
+const validatorEditProfile =  new FormValidator(validators, formElementPopupProfile);
+validatorEditProfile.enableValidation();
 
 buttonOpenPopupProfile.addEventListener('click', () => {
   popupWithFormProfile.open();
-  FormValidatorPopupProfile.resetValidation();
-  const input = changePopupProfile.getUserInfo();
+  validatorEditProfile.resetValidation();
+  const input = userInfo.getUserInfo();
   nameInput.value = input.profileTitle;
   jobInput.value = input.profileSubtitle;
 });

@@ -13,6 +13,7 @@ module.exports = {
     filename: '[name].[hash].js'
   },
   devServer: {
+    open: true,
     static: {
       directory: path.join(__dirname, 'dist'),
     },
