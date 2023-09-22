@@ -5,8 +5,12 @@
   margin: 0 0 28px;
   object-fit: cover;
   display: block;
+  transition: opacity .6s ease;
 }
 
+.profile__avatar:hover {
+  opacity: .2;
+}
 
 @media  screen and (min-width: 769px) {
  .profile__avatar {
