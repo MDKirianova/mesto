@@ -6,44 +6,32 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 import { UserInfo } from '../components/UserInfo.js';
-import { Api } from '../components/Api.js'
+import { Api } from '../components/Api.js';
+import {
+  cardsContainer,
+  popupZoom,
+  popupAdd,
+  popupConfirm,
+  popupProfile,
+  popupAvatar,
+  profileTitle,
+  profileSubtitle,
+  profileAvatar,
+  profileClickAvatar,
+  buttonOpenPopupAdd,
+  buttonOpenPopupProfile,
+  formElementPopupAdd,
+  formElementPopupProfile,
+  formElementPopupAvatar,
+  nameInput,
+  jobInput,
+  validators,
+  apiSettings
+} from '../utils/constants.js'
 
-const cardsContainer = '.grid-elements__list';
-const popupZoom = '.popup-zoom';
-const popupAdd = '.popup-add';
-const popupConfirm = '.popup-confirm';
-const popupProfile = '.popup-profile';
-const popupAvatar = '.popup-avatar';
-const profileTitle = '.profile__info-title';
-const profileSubtitle = '.profile__info-subtitle';
-const profileAvatar = '.profile__avatar';
-const profileClickAvatar = document.querySelector('.profile__element-avatar');
-const buttonOpenPopupAdd = document.querySelector('.profile__add-button');
-const buttonOpenPopupProfile = document.querySelector('.profile__edit-button');
-const formElementPopupAdd = document.querySelector('.popup__form-element_add');
-const formElementPopupProfile = document.querySelector('.popup__form-element_profile');
-const formElementPopupAvatar = document.querySelector('.popup__form-element_avatar');
+const api = new Api(apiSettings);
 
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_job');
 let userId
-
-const validators = {
-  formSelector: '.popup__form-element',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-btn',
-  inactiveButtonClass: 'popup__save-btn_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
-
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-75',
-  headers: {
-    authorization: 'd9427d48-215a-411e-b01d-44ad22fcdd68',
-    'Content-Type': 'application/json'
-  }
-}); 
 
 const userInfo = new UserInfo(profileTitle, profileSubtitle, profileAvatar);
 
@@ -51,25 +39,18 @@ const cardList = new Section({ renderer: (item) => {
   cardList.addItem(createCard(item))}
 }, cardsContainer)
 
-// получение с сервера данных профиля
- api.getUserInfo()
- .then((user) => {
-   userId = user._id
-   userInfo.setUserInfo(user.name, user.about);
-   userInfo.setUserAvatar(user.avatar);
- })
- .catch((err) => {
-   console.log(`Ошибка при получении профиля пользователя: ${err}`);  //выведем ошибку в консоль
- });
+// получение с сервера данных 
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([serverCards, user]) => {
+    userId = user._id;
+    cardList.renderItems(serverCards);
+    userInfo.setUserInfo(user.name, user.about);
+    userInfo.setUserAvatar(user.avatar);
 
-// получение с сервера данных карточек и рендер
- api.getInitialCards()
- .then((serverCards) => {
-   cardList.renderItems(serverCards);
- })
- .catch((err) => {
-   console.log(`Ошибка при получении карточек с сервера: ${err}`);  //выведем ошибку в консоль
- }); 
+  })
+  .catch((err) => {
+    console.log(`Ошибка при получении профиля пользователя или массива карточек: ${err}`);
+  });
 
 // cоздание карточки
 const createCard = (item) => {
@@ -124,8 +105,7 @@ const popupWithFormAdd = new PopupWithForm({ popupSelector: popupAdd,
     api.createNewCard(item.fieldTitle, item.fieldLink)
     .then((item) => {
       cardList.addItem(createCard(item));
-      cardList.renderItems(item);
-      popupWithFormAdd.close()
+      popupWithFormAdd.close();
     })
     .catch((err) => {
       console.log(`Ошибка при добавлении новой карточки: ${err}`); // выведем ошибку в консоль

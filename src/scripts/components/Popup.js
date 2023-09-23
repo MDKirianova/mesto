@@ -31,9 +31,9 @@ export class Popup {
   }
 
   setEventListeners(){
-    this.allCloseBtns.forEach((button) => {
-      const popupToClose = button.closest('.popup');
-      button.addEventListener('click', () => this.close(popupToClose));
-    });
+    this._popup.addEventListener("click", (evt) => {
+        if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close-btn'))
+        this.close();
+      })
   }
 }
